@@ -1,0 +1,3 @@
+[submodule "docs/revolver.wiki"]
+	path = docs/revolver.wiki
+	url = git://github.com/pathway27/revolver.wiki
