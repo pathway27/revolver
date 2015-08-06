@@ -6,28 +6,22 @@ A python3 GUI application to manage your gamesdb rules for the Evolve social gam
 
 ## Todo
 
-Code Skeleton -> Move xpick here
+1. Code Skeleton -> Move xpick here
+2. Parsing gamesdb.xml -> read and write (atomically and write only changes)
+3. Design of GUI
+4. GUI for displaying, testing and submitting gamedb rules, with easy rule creation
+8. Unit Tests
+9. Optimization - Python, Cython then C (:speak_no_evil:)
+10. pip, wheel, win32 binary without python as a dependancy
+5. Auto updating with github api -> (delta updating if possible)
+6. Borderless -> Metro UI Default
+7. Customizable UI
 
-Parsing gamesdb.xml -> read and write (atomically and write only changes)
-
-Design of GUI
-
-GUI for displaying, testing and submitting gamedb rules, with easy rule creation
-
-Auto updating with github api -> (delta updating if possible)
-
-Borderless -> Metro UI Default
-
-Customizable UI
-
-Unit Tests
-
-Optimization - Python, Cython then C (:speak_no_evil:)
-
-pip, wheel, win32 binary without python as a dependancy
+11. Check evolve's terms and policies for this app
+12. Control evolve's console (for reloading/resyncing rules)
 
 ## License
 
-revolver stylized as rEVOLVEr is distributed under the terms of the MIT license. See [LICENSE.md](https://github.com/pathway27/revolver/blob/master/LICENSE.md) for details.
+rEVOLVEr is distributed under the terms of the MIT license. See [LICENSE.md](https://github.com/pathway27/revolver/blob/master/LICENSE.md) for details.
 
-R.I.P xfire :fist:
+<small> :fist: R.I.P xfire :fist: </small>
