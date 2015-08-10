@@ -16,26 +16,27 @@ import re
 
 class AutoCompleteEntry(Entry):
     def __init__(self, autocomplete_list, list_box_length=8, *args, **kwargs):
+        self.check_kwargs(**kwargs)
+
+        Entry.__init__(self, *args, **kwargs)
+        self.focus()
+        self.autocomplete_list = autocomplete_list
+
+        self.var = self['textvariable']
+        if self.var == '':
+            self.var = self["textvariable"] = StringVar()
+
+    def check_kwargs(self, **kwargs):
         if 'matches_function' in kwargs:
             self.matches_function = kwargs['matches_function']
             del kwargs['matches_function']
         else:
-            def matches(fieldValue, acListEntry):
-                pattern = re.compile('.*' + re.escape(fieldValue) +
-                                     '.*', re.IGNORECASE)
-                return re.match(pattern, acListEntry)
+            def matches(query, list_entry):
+                pattern = re.compile(re.escape(query) + '.*', re.IGNORECASE)
+                return re.match(pattern, list_entry)
 
             self.matchesFunction = matches
 
-
-        Entry.__init__(self, *args, **kwargs)
-        self.focus()
-
-        self.autocomplete_list = autocomplete_list
-
-        self.var = self['text_variable']
-        if self.var == '':
-            self.var = self["textvariable"] = StringVar()
 
 if __name__ == '__main__':
     list_of_names = [ str(x) for x in range(60000) ]
@@ -46,4 +47,4 @@ if __name__ == '__main__':
     entry = AutoCompleteEntry(list_of_names, tk_root)
     entry.grid(row=0, column=0)
 
-    root.mainloop()
+    tk_root.mainloop()
