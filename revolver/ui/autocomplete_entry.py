@@ -1,6 +1,8 @@
 """
 https://gist.github.com/uroshekic/11078820
-Inspired by http://code.activestate.com/recipes/578253-an-entry-with-autocompletion-for-the-tkinter-gui/
+Inspired by
+http://code.activestate.com/recipes/578253-an-entry-with-autocompletion-for-the-tkinter-gui/
+
 Changes:
     - Fixed AttributeError: 'AutocompleteEntry' object has no attribute 'listbox'
     - Fixed scrolling listbox
@@ -16,27 +18,20 @@ import re
 
 class AutoCompleteEntry(Entry):
     def __init__(self, autocomplete_list, list_box_length=8, *args, **kwargs):
-        self.check_kwargs(**kwargs)
+        self.matches_function = kwargs.pop('matches_function', self.default_matches)
+        self.var = kwargs.pop('textvariable', StringVar())
+        # self.var = self['textvariable']
+        # if self.var == '':
+        #     self.var = self["textvariable"] = StringVar()
 
         Entry.__init__(self, *args, **kwargs)
+
         self.focus()
         self.autocomplete_list = autocomplete_list
 
-        self.var = self['textvariable']
-        if self.var == '':
-            self.var = self["textvariable"] = StringVar()
-
-    def check_kwargs(self, **kwargs):
-        if 'matches_function' in kwargs:
-            self.matches_function = kwargs['matches_function']
-            del kwargs['matches_function']
-        else:
-            def matches(query, list_entry):
-                pattern = re.compile(re.escape(query) + '.*', re.IGNORECASE)
-                return re.match(pattern, list_entry)
-
-            self.matchesFunction = matches
-
+    def default_matches(self, query, list_entry):
+        pattern = re.compile(re.escape(query) + '.*', re.IGNORECASE)
+        return re.match(pattern, list_entry)
 
 if __name__ == '__main__':
     list_of_names = [ str(x) for x in range(60000) ]
@@ -44,7 +39,12 @@ if __name__ == '__main__':
     tk_root = Tk()
     sv = StringVar()
 
-    entry = AutoCompleteEntry(list_of_names, tk_root)
+    def matches(fieldValue, acListEntry):
+        pattern = re.compile(re.escape(fieldValue) + '.*', re.IGNORECASE)
+        return re.match(pattern, acListEntry)
+
+    entry = AutoCompleteEntry(list_of_names, tk_root,
+                              matches_function=matches)
     entry.grid(row=0, column=0)
 
     tk_root.mainloop()
