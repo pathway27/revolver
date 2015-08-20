@@ -17,23 +17,22 @@ from tkinter.ttk import *
 import re
 
 class AutoCompleteEntry(Entry):
-    def __init__(self, autocomplete_list, list_box_length=8, *args, **kwargs):
-        self.matches_function = kwargs.pop('matches_function', self.default_matches)
-        self.var = kwargs.pop('textvariable', StringVar())
-        # self.var = self['textvariable']
-        # if self.var == '':
-        #     self.var = self["textvariable"] = StringVar()
+    def __init__(self, autocomplete_list, *args, **kwargs):
+        self.list_box_length = kwargs.pop('list_box_length', 8)
+        self.matches_function = kwargs.pop('matches_function',
+                                           self.default_match)
+        self.textvariable = kwargs.pop('textvariable', StringVar())
+        self.autocomplete_list = autocomplete_list
 
         Entry.__init__(self, *args, **kwargs)
 
         self.focus()
-        self.autocomplete_list = autocomplete_list
 
-    def default_matches(self, query, list_entry):
+    def default_match(self, query, list_entry):
         pattern = re.compile(re.escape(query) + '.*', re.IGNORECASE)
         return re.match(pattern, list_entry)
 
-if __name__ == '__main__':
+if __name__ == '__main__':  # pragma: no cover
     list_of_names = [ str(x) for x in range(60000) ]
 
     tk_root = Tk()
