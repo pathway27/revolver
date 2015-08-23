@@ -4,6 +4,12 @@ A python3 GUI application to manage your gamesdb rules for the Evolve social gam
 
 ## Installation
 
+Virtual Env : TODO: virtualenvwrapper for multiple py/os
+
+Requirements if dev/testing
+
+Run
+
 ## Todo
 
 1. Code Skeleton -> Move xpick here
@@ -19,6 +25,12 @@ A python3 GUI application to manage your gamesdb rules for the Evolve social gam
 
 11. Check evolve's terms and policies for this app
 12. Control evolve's console (for reloading/resyncing rules)
+
+## Testing
+
+```bash
+coverage run -m unittest
+```
 
 ## License
 
