@@ -4,12 +4,7 @@ Inspired by
 http://code.activestate.com/recipes/578253-an-entry-with-autocompletion-for-the-tkinter-gui/
 
 Changes:
-    - Fixed AttributeError: 'AutocompleteEntry' object has no attribute 'listbox'
-    - Fixed scrolling listbox
-    - Case-insensitive search
-    - Added focus to entry field
-    - Custom listbox length, listbox width matches entry field width
-    - Custom matches function
+    - Re-write
 """
 
 from tkinter import *
