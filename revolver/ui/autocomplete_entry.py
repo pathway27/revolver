@@ -15,7 +15,8 @@ class AutoCompleteEntry(Entry):
     def __init__(self, autocomplete_list, *args, **kwargs):
         self.list_box_length = kwargs.pop('list_box_length', 8)
         self.matches_function = kwargs.pop('matches_function',
-                                           self.default_match)
+                                           self._default_match)
+
         self.textvariable = kwargs.pop('textvariable', StringVar())
         self.autocomplete_list = autocomplete_list
 
@@ -23,9 +24,17 @@ class AutoCompleteEntry(Entry):
 
         self.focus()
 
-    def default_match(self, query, list_entry):
+        # bind events
+
+        # trace when variable is written to
+        self.textvariable.trace('w', self._changed)
+
+    def _default_match(self, query, list_entry):
         pattern = re.compile(re.escape(query) + '.*', re.IGNORECASE)
         return re.match(pattern, list_entry)
+
+    def _changed(self, name, index, mode):
+        pass
 
 if __name__ == '__main__':  # pragma: no cover
     list_of_names = [ str(x) for x in range(60000) ]

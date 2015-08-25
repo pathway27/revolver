@@ -1,17 +1,11 @@
 from tkinter import Tk, StringVar
-from revolver.ui.autocomplete_entry import AutoCompleteEntry
-import unittest
 from types import MethodType, FunctionType
 
+from revolver.ui.autocomplete_entry import AutoCompleteEntry
+
+import unittest
+
 class AutoCompleteEntryTest(unittest.TestCase):
-    @classmethod
-    def setUpClass(cls):
-        pass
-
-    @classmethod
-    def tearDownClass(cls):
-        pass
-
     def setUp(self):
         list_of_names = [str(x) for x in range(60000)]
 
@@ -24,7 +18,6 @@ class AutoCompleteEntryTest(unittest.TestCase):
             return re.match(pattern, acListEntry)
 
         self.entry_default_args = AutoCompleteEntry(list_of_names, tk_root)
-
 
         self.entry_custom_args = AutoCompleteEntry(list_of_names, tk_root,
                                                    list_box_length=12,
@@ -65,6 +58,9 @@ class AutoCompleteEntryTest(unittest.TestCase):
 
     def test_custom_textvariable_initalized(self):
         self.assertEqual(self.entry_custom_args.textvariable.get(), 'hello')
+
+    def test_basic_change_event(self):
+        pass
 
     def test_basic_autocomplete_entry(self):
         self.assertEqual('foo'.upper(), 'FOO')
