@@ -6,6 +6,8 @@ A python3 GUI application to manage your gamesdb rules for the Evolve social gam
 
 Virtual Env : TODO: virtualenvwrapper for multiple py/os
 
+Include instructions for tk include and fix
+
 Requirements if dev/testing
 
 Run
@@ -30,6 +32,8 @@ Run
 
 ```bash
 coverage run -m unittest
+coverage report -m \#or
+coverage html
 ```
 
 ## License
