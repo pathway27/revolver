@@ -47,7 +47,7 @@ class AutoCompleteEntryTest(unittest.TestCase):
         self.assertEqual(self.entry_default_args.textvariable.get(), '')
 
     def test_default_matches_function_results(self):
-        self.entry_default_args.default_match('hi', 'hi')
+        self.entry_default_args._default_match('hi', 'hi')
 
     def test_custom_list_box_length_initalized(self):
         self.assertEqual(self.entry_custom_args.list_box_length, 12)
