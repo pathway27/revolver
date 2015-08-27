@@ -1,15 +1,26 @@
 # rEVOLVEr
 
+[![Build Status](https://travis-ci.org/pathway27/revolver.svg?branch=master)](https://travis-ci.org/pathway27/revolver)
+[![Coverage Status](https://coveralls.io/repos/pathway27/revolver/badge.svg?branch=master&service=github)](https://coveralls.io/github/pathway27/revolver?branch=master)
+
 A python3 GUI application to manage your gamesdb rules for the Evolve social gaming platform. Made for learning python and GUI programming.
 
 ## Installation
 
-Virtual Env : TODO: virtualenvwrapper for multiple py/os
+1. Windows Binary
+2. pip
+3. Clone this repo and run
 
-Include instructions for tk include and fix
+## Development
 
 Requirements if dev/testing
 
+```
+pip install -r test-requirements.txt
+```
+
+Virtual Env : TODO: virtualenvwrapper for multiple py/os
+Include instructions for ttk include and fix
 Run
 
 ## Todo
@@ -32,7 +43,7 @@ Run
 
 ```bash
 coverage run -m unittest
-coverage report -m \#or
+coverage report -m #or
 coverage html
 ```
 
