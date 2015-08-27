@@ -2,10 +2,14 @@ language: python
 python:
   - "3.4"
 # command to install dependencies
-install: "pip install -r test-requirements.txt"
+install:
+  - "pip install -r test-requirements.txt"
+  - "pip install coveralls"
 # for gui applications
 before_script:
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
 # command to run tests
 script: coverage run -m unittest
+after_success:
+  coveralls
