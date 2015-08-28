@@ -1,5 +1,6 @@
 from tkinter import Tk, StringVar
 from types import MethodType, FunctionType
+import re
 
 from revolver.ui.autocomplete_entry import AutoCompleteEntry
 
@@ -44,6 +45,7 @@ class AutoCompleteEntryTest(unittest.TestCase):
                               MethodType)
 
     def test_default_textvariable_initalized(self):
+        self.assertEqual(self.entry_default_args.get(), '')
         self.assertEqual(self.entry_default_args.textvariable.get(), '')
 
     def test_default_matches_function_results(self):
@@ -61,6 +63,8 @@ class AutoCompleteEntryTest(unittest.TestCase):
 
     def test_basic_change_event(self):
         pass
+        # self.entry_custom_args.textvariable.set('world')
+        # self.assertEqual(self.entry_custom_args.textvariable.get(), 'world')
 
     def test_basic_autocomplete_entry(self):
         self.assertEqual('foo'.upper(), 'FOO')
