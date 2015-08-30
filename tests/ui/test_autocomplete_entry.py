@@ -62,9 +62,11 @@ class AutoCompleteEntryTest(unittest.TestCase):
         self.assertEqual(self.entry_custom_args.textvariable.get(), 'hello')
 
     def test_basic_change_event(self):
-        pass
-        # self.entry_custom_args.textvariable.set('world')
-        # self.assertEqual(self.entry_custom_args.textvariable.get(), 'world')
+        self.entry_default_args.textvariable.set('world')
+        self.assertEqual(self.entry_default_args.textvariable.get(), 'world')
+
+        self.entry_custom_args.textvariable.set('world')
+        self.assertEqual(self.entry_custom_args.textvariable.get(), 'world')
 
     def test_basic_autocomplete_entry(self):
         self.assertEqual('foo'.upper(), 'FOO')
