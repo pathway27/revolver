@@ -7,25 +7,28 @@ Todo:
     - Logging
 """
 
-from tkinter import *
-from tkinter.ttk import *
+from tkinter import Entry, Listbox, StringVar
+from tkinter.ttk import Entry
 import re
 
 
-class AutoCompleteEntry(Entry):
+class AutoCompleteEntry(Entry): # pylint: disable=too-many-ancestors
+    """
+    An entry widget with asdf.
+    """
     def __init__(self, autocomplete_list, *args, **kwargs):
         self.autocomplete_list = autocomplete_list
         self.list_box_length = kwargs.pop('list_box_length', 8)
         self.matches_function = kwargs.pop('matches_function',
                                            self._default_match)
 
-        self.textvariable = kwargs.get('textvariable', StringVar()) # function to initate_string_var_no_textvariable
-        Entry.__init__(self, *args, **kwargs)
+        # function to initate_string_var_no_textvariable
+        self.textvariable = kwargs.get('textvariable', StringVar())
+        super().__init__(self, *args, **kwargs)
         self.config(textvariable=self.textvariable)
         self.focus()
 
         self.textvariable.trace('w', self._changed)
-
 
     @property
     def existing_list_box(self):
@@ -35,15 +38,11 @@ class AutoCompleteEntry(Entry):
         pattern = re.compile(re.escape(query) + '.*', re.IGNORECASE)
         return re.match(pattern, list_entry)
 
-    def __changed_test(self, *args):
-        print(args)
-        print("in __changed_test")
-
     def _changed(self, name, index, mode):
         print("in _changed")
         print(name, index, mode)
 
-        if self.textvariable.get(): # not empty string
+        if self.textvariable.get():  # not empty string
             words = self.__comparison()
 
             if not words:
@@ -53,13 +52,13 @@ class AutoCompleteEntry(Entry):
                 self.list_box = Listbox(width=self["width"],
                                         height=self.list_box_length)
                 # looks hacky
-                self.list_box.place(x=self.winfo_x(), y=self.winfo_y() + self.winfo_height())
+                self.list_box.place(
+                    x=self.winfo_x(), y=self.winfo_y() + self.winfo_height())
                 self.list_box.delete(0, END)
                 for w in words:
-                    self.list_box.insert(END,w)
+                    self.list_box.insert(END, w)
         else:
             self.__delete_existing_list_box()
-
 
     def __delete_existing_list_box(self):
         if self.existing_list_box:
@@ -76,7 +75,10 @@ class AutoCompleteEntry(Entry):
 
 
 if __name__ == '__main__':  # pragma: no cover
-    list_of_names = [ str(x) for x in range(60000) ]
+    from tkinter import Tk, Button
+    from tkinter.ttk import Button
+
+    list_of_names = [str(x) for x in range(60000)]
 
     tk_root = Tk()
     sv = StringVar()
@@ -91,10 +93,10 @@ if __name__ == '__main__':  # pragma: no cover
     entry.grid(row=0, column=0)
 
     def callback():
-        #print(entry.get())
+        # print(entry.get())
         print(entry.textvariable.get())
 
-    button = Button(tk_root, text="check textvariable", command=callback)
+    button = Button(tk_root, text="Button", command=callback)
     button.grid(row=1)
 
     tk_root.mainloop()
