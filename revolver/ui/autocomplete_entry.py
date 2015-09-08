@@ -24,7 +24,8 @@ class AutoCompleteEntry(Entry): # pylint: disable=too-many-ancestors
 
         # function to initate_string_var_no_textvariable
         self.textvariable = kwargs.get('textvariable', StringVar())
-        super().__init__(self, *args, **kwargs)
+        self.list_box = None
+        super().__init__(*args, **kwargs)
         self.config(textvariable=self.textvariable)
         self.focus()
 
