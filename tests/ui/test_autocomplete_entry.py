@@ -42,7 +42,7 @@ class AutoCompleteEntryTest(unittest.TestCase):
 
     def test_default_matches_function_initalized(self):
         self.assertIsInstance(self.entry_default_args.matches_function,
-                              MethodType)
+                              FunctionType)
 
     def test_default_textvariable_initalized(self):
         self.assertEqual(self.entry_default_args.get(), '')
