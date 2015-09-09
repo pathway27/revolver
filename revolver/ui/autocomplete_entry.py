@@ -7,7 +7,7 @@ Todo:
     - Logging
 """
 
-from tkinter import Entry, Listbox, StringVar
+from tkinter import Entry, Listbox, StringVar, END
 from tkinter.ttk import Entry
 import re
 
@@ -33,13 +33,23 @@ class AutoCompleteEntry(Entry): # pylint: disable=too-many-ancestors
 
     @property
     def existing_list_box(self):
+        """
+        Check if this instance has its' listbox defined/open.
+        """
         return self.__dict__.get('list_box', False)
 
-    def _default_match(self, query, list_entry):
+    @staticmethod
+    def _default_match(query, list_entry):
+        """
+        The default match function if none is given during instantiation.
+        """
         pattern = re.compile(re.escape(query) + '.*', re.IGNORECASE)
         return re.match(pattern, list_entry)
 
     def _changed(self, name, index, mode):
+        """
+        Event handler for changes to entry.
+        """
         print("in _changed")
         print(name, index, mode)
 
@@ -56,17 +66,23 @@ class AutoCompleteEntry(Entry): # pylint: disable=too-many-ancestors
                 self.list_box.place(
                     x=self.winfo_x(), y=self.winfo_y() + self.winfo_height())
                 self.list_box.delete(0, END)
-                for w in words:
-                    self.list_box.insert(END, w)
+                for word in words:
+                    self.list_box.insert(END, word)
         else:
             self.__delete_existing_list_box()
 
     def __delete_existing_list_box(self):
+        """
+        Deletes open listbox.
+        """
         if self.existing_list_box:
             self.list_box.destroy()
 
     # hmmmm
     def __comparison(self):
+        """
+        Finds words similar to query. TODO
+        """
         if len(self.get()) < 3:
             return []
         ans = [w for w in self.autocomplete_list if
