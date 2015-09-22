@@ -87,8 +87,8 @@ class AutoCompleteEntry(Entry): # pylint: disable=too-many-ancestors
             return []
         ans = [w for w in self.autocomplete_list if
                self.matches_function(self.textvariable.get(), w)]
-        print(len(ans))
-        return ans[:10]
+        print(ans)
+        return ans[:5]
 
 
 if __name__ == '__main__':  # pragma: no cover
