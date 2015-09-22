@@ -64,8 +64,8 @@ class AutoCompleteEntryTest(unittest.TestCase):
     def test_basic_change_event(self):
         ## TODO: Make sure _changed was called
 
-        self.entry_default_args.textvariable.set('world')
-        self.assertEqual(self.entry_default_args.textvariable.get(), 'world')
+        self.entry_default_args.textvariable.set('6000')
+        self.assertEqual(self.entry_default_args.textvariable.get(), '6000')
 
         self.entry_custom_args.textvariable.set('world')
         self.assertEqual(self.entry_custom_args.textvariable.get(), 'world')
