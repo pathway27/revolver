@@ -7,7 +7,6 @@ class App():
 
         self.master.title("xPick")
 
-        # padding="20", borderwidth=16,
         self.frame = Frame(self.master, padding="20", relief='sunken')
         self.frame.columnconfigure(0, weight=1)
         self.frame.rowconfigure(0, weight=1)
